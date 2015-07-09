@@ -32,9 +32,9 @@ require([
             console.log("#arcgis-map mouse-over");
             map.reposition();
         });
-        /*map.on("click", function() {
+        map.on("click", function() {
             map.reposition();
-        });*/
+        });
     });
 
     addDynamicLayer();
