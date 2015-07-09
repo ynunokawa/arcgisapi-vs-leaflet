@@ -8,7 +8,7 @@ require([
   $( document ).ready(function() {
 
     var map = L.map('leaflet-map').setView([d.lat, d.long], d.zoom);
-    L.esri.basemapLayer('Topographic').addTo(map);
+    L.esri.basemapLayer('Imagery').addTo(map);
     /*map.invalidateSize(false);
 
     $('#leaflet-tab').click(function() {
@@ -24,7 +24,14 @@ require([
       }
     });
 
-    L.esri.dynamicMapLayer("http://d29gfjzfcfpjgq.cloudfront.net/arcgis/rest/services/DynamicLayer/PopulationDensity/MapServer", {
+    L.esri.featureLayer(d.featureLayerUrl, {
+      minZoom: 9,
+      style: { color: 'white', fillOpacity: 0, weight: 1 }
+    }).addTo(map).bindPopup(function (feature) {
+      return L.Util.template('<p>市区町村<br>{SIKUCHOSON}</p>', feature.properties);
+    });
+
+    L.esri.dynamicMapLayer(d.dynamicLayerUrl, {
       opacity: 0.5,
       useCors: false
     }).addTo(map);
@@ -40,7 +47,9 @@ require([
       }
     }).addTo(map);
 
-    L.esri.imageMapLayer(d.imageServiceLayerUrl).addTo(map);
+    L.esri.imageMapLayer(d.imageServiceLayerUrl, {
+      opacity: 0.7
+    }).addTo(map);
 
   });
 
