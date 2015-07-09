@@ -1,5 +1,9 @@
 # ArcGIS API? or Leaflet?
 
+[![](img/readme.png)]()
+
+[http://ynunokawa.github.io/arcgisapi-vs-leaflet/index.html](http://ynunokawa.github.io/arcgisapi-vs-leaflet/index.html)
+
 ArcGIS プラットフォームを利用して Web アプリを開発する際に、JavaScript ライブラリの選択肢は大きく2つに分かれます。
 
 ## ArcGIS API for JavaScript
