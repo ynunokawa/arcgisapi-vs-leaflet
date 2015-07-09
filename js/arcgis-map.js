@@ -14,7 +14,7 @@ require([
     "dojo/domReady!"
 
 ], function (Map, Search, ArcGISDynamicMapServiceLayer, FeatureLayer, HeatmapRenderer, InfoTemplate, ArcGISImageServiceLayer, dom, on, d) {
-    
+
     var map = new Map("arcgis-map", {
         basemap: "topo",
         center: [d.long, d.lat], // lon, lat
@@ -49,11 +49,8 @@ require([
     }
 
     function addHeatmapLayer() {
-        var infoTemplate = new InfoTemplate("属性", "{*}");
-
         var heatmapFeatureLayerOptions = {
           mode: FeatureLayer.MODE_SNAPSHOT,
-          infoTemplate: infoTemplate,
           outFields: ["*"]
         };
         var heatmapFeatureLayer = new FeatureLayer(d.heatmapLayerUrl, heatmapFeatureLayerOptions);
