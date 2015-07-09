@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
+   <title>ArcGIS API for JavaScript vs. Esri Leaflet</title>
+   <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/claro/claro.css">
+   <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
+   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+   <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+   <style>
+      /* GENERAL */
+      html,
+      body {
+         height: 100%;
+         width: 100%;
+         margin: 0;
+         padding: 0;
+      }
+      .page-content {
+        /*height: 100vh;*/
+      }
+      .main-page {
+        padding: 40px 15px 30px 15px;
+      }
+      .ja-txt {
+        font-family: "Meiryo";
+      }
+      .white-txt {
+        color: #fff;
+      }
+      .api-link {
+        margin-left: 15px;
+        height: 30px;
+        width: 30px;
+      }
+      #main-page-content {
+        background-image: url("img/background.png");
+        background-size: cover;
+      }
+      #btn {
+        position: absolute;
+        z-index: 3;
+        bottom: 20px;
+        right: 74px;
+      }
+      #fixed-tab-1 {
+        margin-top: -25px;
+      }
+      #fixed-tab-2 {
+        margin-top: -18px;
+      }
+
+      /* ARCGIS */
+      #arcgis-map {
+         height: 450px;
+         width: 100%;
+         margin: 0;
+         padding: 0;
+      }
+      #arcgis-search {
+         position: absolute;
+         z-index: 2;
+         top: 135px;
+         left: 74px;
+      }
+
+      /* LEAFLET */
+      #leaflet-map {
+         height: 450px;
+         width: 100%;
+         margin: 0;
+         padding: 0;
+      }
+   </style>
+   <script type="text/javascript">
+        var package_path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
+        var dojoConfig = {
+            packages: [{
+                name: "config",
+                location: package_path + '/config'
+            }]
+        };
+   </script>
+   <!-- Material Design Lite -->
+   <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+   <!-- jQuery -->
+   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+   <!-- Leaflet + Esri Leaflet -->
+   <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+   <script src="//cdn.jsdelivr.net/leaflet.esri/latest/esri-leaflet.js"></script>
+   <!-- Leaflet Plugins -->
+   <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/1.0.0-rc.4/esri-leaflet-geocoder.js"></script>
+   <link rel="stylesheet" type="text/css" href="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/1.0.0-rc.4/esri-leaflet-geocoder.css">
+   <script src="https://rawgit.com/Leaflet/Leaflet.heat/gh-pages/dist/leaflet-heat.js"></script>
+   <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-heatmap-feature-layer/1.0.0-rc.1/esri-leaflet-heatmap-feature-layer.js"></script>
+
+   <!-- ArcGIS API for JavaScript -->
+   <script src="http://js.arcgis.com/3.13/"></script>
+   <!-- App -->
+   <script src="js/arcgis-map.js"></script>
+   <script src="js/leaflet-map.js"></script>
+</head>
+
+<body>
+
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+              mdl-layout--fixed-tabs">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">ArcGIS API for JavaScript vs. Esri Leaflet</span>
+      </div>
+      <!-- Tabs -->
+      <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+        <a href="#fixed-tab-1" class="mdl-layout__tab is-active">What's the page?</a>
+        <a href="#fixed-tab-2" id="arcgis-tab" class="mdl-layout__tab">ArcGIS API for JavaScript</a>
+        <a href="#fixed-tab-3" class="mdl-layout__tab">Esri Leaflet</a>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Title</span>
+    </div>
+    <main class="mdl-layout__content">
+      <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+        <div id="main-page-content" class="page-content">
+          <div class="main-page">
+            <div class="white-txt">
+              <h1>ArcGIS API? or Leaflet?</h1>
+              <p class="ja-txt">ArcGIS プラットフォームを利用して Web アプリを開発する際に、JavaScript ライブラリの選択肢は大きく2つに分かれます。</p>
+              <h3>ArcGIS API for JavaScript<a target="_brank" href="https://developers.arcgis.com/javascript/"><img class="api-link" src="img/arcgis-dev-kit.png"/></a></h3>
+              <p class="ja-txt">ArcGIS が提供する Web API です。ArcGIS に最適化されたライブラリであるため、ArcGIS のリソースをフルに活用することができます。ArcGIS プラットフォームを使って開発を行う際の一番の選択肢となります。</p>
+              <h3>Leaflet<a target="_brank" href="https://github.com/Leaflet/Leaflet"><img class="api-link" src="img/GitHub-Mark-Light-32px.png"/></a></h3>
+              <p class="ja-txt">Leaflet はオープンソースの地図アプリ開発用ライブラリです。機能はミニマムで非常に軽量な設計となっており、モバイル Web にも適しています。Leaflet は機能拡張を行う際は、プラグインを適用するエコシステムを採用しており、ArcGIS リソースを利用するための Esri Leaflet プラグインがオープンソースとして公開されているため、Leaflet ベースの ArcGIS Web アプリの開発が可能です。</p>
+              <ul>
+                <li>
+                  <h5>Esri Leaflet</h5>
+                  <p class="ja-txt">Leaflet アプリで ArcGIS リソースを利用するためのプラグインです。</p>
+                </li>
+              </ul>
+              <h3 class="ja-txt">比較</h3>
+            </div>
+
+            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+              <thead>
+                <tr>
+                  <th class="mdl-data-table__cell--non-numeric"></th>
+                  <th>ArcGIS API for JavaScript</th>
+                  <th>Esri Leaflet</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">サイズ</td>
+                  <td>33KB（バージョン 0.7.3）</td>
+                  <td>43MB（バージョン 3.13）</td>
+                </tr>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">特徴</td>
+                  <td>連携に強い</td>
+                  <td>GIS 機能に特化</td>
+                </tr>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">ArcGIS サービス</td>
+                  <td>限定的（※開発による拡張は可能）</td>
+                  <td>全てのサービス</td>
+                </tr>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">投影法</td>
+                  <td>Web メルカトル・WGS 1984 のみ<br>（<a target="_brank" href="https://github.com/kartena/Proj4Leaflet">Proj4Leaflet</a> を使用することで他の投影法も利用可能）</td>
+                  <td>Web メルカトル・WGS 1984 以外の投影法をサポート</td>
+                </tr>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">技術サポート</td>
+                  <td><b>なし（オープンソース）</b></td>
+                  <td>あり</td>
+                </tr>
+                <tr>
+                  <td class="mdl-data-table__cell--non-numeric">UI コンポーネント</td>
+                  <td>なし（サードパーティー フレームワークとの連携が必要）</td>
+                  <td>あり（Dojo Toolkit）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section class="mdl-layout__tab-panel" id="fixed-tab-2">
+        <div class="page-content">
+     　    <div id="arcgis-map"></div>
+          <div id="arcgis-search"></div>
+        </div>
+      </section>
+      <section class="mdl-layout__tab-panel" id="fixed-tab-3">
+        <div class="page-content">
+          <div id="leaflet-map"></div>
+        </div>
+      </section>
+      <!--<button id="btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent">
+        <i class="material-icons">add</i>
+      </button>-->
+    </main>
+  </div>
+
+</body>
+
+</html>
