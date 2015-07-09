@@ -9,11 +9,11 @@ require([
 
     var map = L.map('leaflet-map').setView([d.lat, d.long], d.zoom);
     L.esri.basemapLayer('Topographic').addTo(map);
-    map.invalidateSize(false);
+    /*map.invalidateSize(false);
 
     $('#leaflet-tab').click(function() {
       map.invalidateSize(false);
-    });
+    });*/
 
     var searchControl = new L.esri.Geocoding.Controls.Geosearch().addTo(map);
     var results = new L.LayerGroup().addTo(map);
