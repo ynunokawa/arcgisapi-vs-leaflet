@@ -4,7 +4,7 @@
 <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no" />
-   <title>ArcGIS API for JavaScript vs. Esri Leaflet</title>
+   <title>ArcGIS API vs. Leaflet</title>
    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/claro/claro.css">
    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
@@ -19,14 +19,28 @@
          margin: 0;
          padding: 0;
       }
+      .ja-txt {
+        font-family: "Meiryo";
+      }
+      #btn {
+        position: absolute;
+        z-index: 3;
+        bottom: 20px;
+        right: 74px;
+      }
+      #fixed-tab-1 {
+        margin-top: -25px;
+      }
+      #fixed-tab-2 {
+        margin-top: -18px;
+      }
+
+      /* WHAT'S THE PAGE*/
       .page-content {
         /*height: 100vh;*/
       }
       .main-page {
         padding: 40px 15px 30px 15px;
-      }
-      .ja-txt {
-        font-family: "Meiryo";
       }
       .white-txt {
         color: #fff;
@@ -40,17 +54,11 @@
         background-image: url("img/background.png");
         background-size: cover;
       }
-      #btn {
-        position: absolute;
-        z-index: 3;
-        bottom: 20px;
-        right: 74px;
+      .compare-table {
+        max-width: 100%;
       }
-      #fixed-tab-1 {
-        margin-top: -25px;
-      }
-      #fixed-tab-2 {
-        margin-top: -18px;
+      .mdl-data-table {
+        width:inherit;
       }
 
       /* ARCGIS */
@@ -106,12 +114,11 @@
 
 <body>
 
-  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
-              mdl-layout--fixed-tabs">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
         <!-- Title -->
-        <span class="mdl-layout-title">ArcGIS API for JavaScript vs. Esri Leaflet</span>
+        <span class="mdl-layout-title">ArcGIS API vs. Leaflet</span>
       </div>
       <!-- Tabs -->
       <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
@@ -143,47 +150,49 @@
               <h3 class="ja-txt">比較</h3>
             </div>
 
-            <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
-              <thead>
-                <tr>
-                  <th class="mdl-data-table__cell--non-numeric"></th>
-                  <th>ArcGIS API for JavaScript</th>
-                  <th>Esri Leaflet</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">サイズ</td>
-                  <td>33KB（バージョン 0.7.3）</td>
-                  <td>43MB（バージョン 3.13）</td>
-                </tr>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">特徴</td>
-                  <td>連携に強い</td>
-                  <td>GIS 機能に特化</td>
-                </tr>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">ArcGIS サービス</td>
-                  <td>限定的（※開発による拡張は可能）</td>
-                  <td>全てのサービス</td>
-                </tr>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">投影法</td>
-                  <td>Web メルカトル・WGS 1984 のみ<br>（<a target="_brank" href="https://github.com/kartena/Proj4Leaflet">Proj4Leaflet</a> を使用することで他の投影法も利用可能）</td>
-                  <td>Web メルカトル・WGS 1984 以外の投影法をサポート</td>
-                </tr>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">技術サポート</td>
-                  <td><b>なし（オープンソース）</b></td>
-                  <td>あり</td>
-                </tr>
-                <tr>
-                  <td class="mdl-data-table__cell--non-numeric">UI コンポーネント</td>
-                  <td>なし（サードパーティー フレームワークとの連携が必要）</td>
-                  <td>あり（Dojo Toolkit）</td>
-                </tr>
-              </tbody>
+            <div class="compare-table">
+              <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+                <thead>
+                  <tr>
+                    <th class="mdl-data-table__cell--non-numeric"></th>
+                    <th>ArcGIS API for JavaScript</th>
+                    <th>Esri Leaflet</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">サイズ</td>
+                    <td>33KB（バージョン 0.7.3）</td>
+                    <td>43MB（バージョン 3.13）</td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">特徴</td>
+                    <td>連携に強い</td>
+                    <td>GIS 機能に特化</td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">ArcGIS サービス</td>
+                    <td>限定的（※開発による拡張は可能）</td>
+                    <td>全てのサービス</td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">投影法</td>
+                    <td>Web メルカトル・WGS 1984 のみ<br>（<a target="_brank" href="https://github.com/kartena/Proj4Leaflet">Proj4Leaflet</a> を使用することで他の投影法も利用可能）</td>
+                    <td>Web メルカトル・WGS 1984 以外の投影法をサポート</td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">技術サポート</td>
+                    <td><b>なし（オープンソース）</b></td>
+                    <td>あり</td>
+                  </tr>
+                  <tr>
+                    <td class="mdl-data-table__cell--non-numeric">UI コンポーネント</td>
+                    <td>なし（サードパーティー フレームワークとの連携が必要）</td>
+                    <td>あり（Dojo Toolkit）</td>
+                  </tr>
+                </tbody>
             </table>
+            </div>
           </div>
         </div>
       </section>
