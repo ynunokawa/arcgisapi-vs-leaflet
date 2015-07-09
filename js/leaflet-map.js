@@ -9,8 +9,9 @@ require([
 
     var map = L.map('leaflet-map').setView([d.lat, d.long], d.zoom);
     L.esri.basemapLayer('Topographic').addTo(map);
+    map.invalidateSize(false);
 
-    $('#leaflet-tab').on('click', function() {
+    $('#leaflet-tab').click(function() {
       map.invalidateSize(false);
     });
 
