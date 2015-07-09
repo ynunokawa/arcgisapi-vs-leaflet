@@ -6,14 +6,12 @@ require([
 ], function (d) {
 
   $( document ).ready(function() {
-    var map = L.map('leaflet-map').setView([d.lat, d.long], d.zoom);
 
+    var map = L.map('leaflet-map').setView([d.lat, d.long], d.zoom);
     L.esri.basemapLayer('Topographic').addTo(map);
 
     var searchControl = new L.esri.Geocoding.Controls.Geosearch().addTo(map);
-
     var results = new L.LayerGroup().addTo(map);
-
     searchControl.on('results', function(data){
       results.clearLayers();
       for (var i = data.results.length - 1; i >= 0; i--) {
@@ -39,13 +37,6 @@ require([
 
     L.esri.imageMapLayer(d.imageServiceLayerUrl).addTo(map);
 
-    /*L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    L.marker([d.lat, d.long]).addTo(map)
-        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-        .openPopup();*/
   });
 
 });

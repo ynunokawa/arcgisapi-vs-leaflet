@@ -14,6 +14,7 @@ require([
     "dojo/domReady!"
 
 ], function (Map, Search, ArcGISDynamicMapServiceLayer, FeatureLayer, HeatmapRenderer, InfoTemplate, ArcGISImageServiceLayer, dom, on, d) {
+    
     var map = new Map("arcgis-map", {
         basemap: "topo",
         center: [d.long, d.lat], // lon, lat
@@ -31,26 +32,39 @@ require([
             console.log("#arcgis-map mouse-over");
             map.reposition();
         });
+        map.on("click", function() {
+            map.reposition();
+        });
     });
 
-    var dynamicLayer = new ArcGISDynamicMapServiceLayer("http://d29gfjzfcfpjgq.cloudfront.net/arcgis/rest/services/DynamicLayer/PopulationDensity/MapServer", {
-        opacity: 0.5
-    });
-    map.addLayer(dynamicLayer);
+    addDynamicLayer();
+    addHeatmapLayer();
+    addImageLayer();
 
-    var infoTemplate = new InfoTemplate("属性", "{*}");
+    function addDynamicLayer() {
+        var dynamicLayer = new ArcGISDynamicMapServiceLayer("http://d29gfjzfcfpjgq.cloudfront.net/arcgis/rest/services/DynamicLayer/PopulationDensity/MapServer", {
+            opacity: 0.5
+        });
+        map.addLayer(dynamicLayer);
+    }
 
-    var heatmapFeatureLayerOptions = {
-      mode: FeatureLayer.MODE_SNAPSHOT,
-      infoTemplate: infoTemplate,
-      outFields: ["*"]
-    };
-    var heatmapFeatureLayer = new FeatureLayer(d.heatmapLayerUrl, heatmapFeatureLayerOptions);
-    var heatmapRenderer = new HeatmapRenderer();
-    heatmapFeatureLayer.setRenderer(heatmapRenderer);
-    map.addLayer(heatmapFeatureLayer);
+    function addHeatmapLayer() {
+        var infoTemplate = new InfoTemplate("属性", "{*}");
 
-    var imageLayer = new ArcGISImageServiceLayer(d.imageServiceLayerUrl);
-    map.addLayer(imageLayer);
+        var heatmapFeatureLayerOptions = {
+          mode: FeatureLayer.MODE_SNAPSHOT,
+          infoTemplate: infoTemplate,
+          outFields: ["*"]
+        };
+        var heatmapFeatureLayer = new FeatureLayer(d.heatmapLayerUrl, heatmapFeatureLayerOptions);
+        var heatmapRenderer = new HeatmapRenderer();
+        heatmapFeatureLayer.setRenderer(heatmapRenderer);
+        map.addLayer(heatmapFeatureLayer);
+    }
+
+    function addImageLayer() {
+        var imageLayer = new ArcGISImageServiceLayer(d.imageServiceLayerUrl);
+        map.addLayer(imageLayer);
+    }
 
 });
