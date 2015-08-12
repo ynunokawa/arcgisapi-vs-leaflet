@@ -7,7 +7,7 @@
    <title>ArcGIS API vs. Leaflet</title>
    <link rel="stylesheet" href="http://js.arcgis.com/3.13/dijit/themes/claro/claro.css">
    <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
-   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+   <link rel="stylesheet" href="//cdn.jsdelivr.net/leaflet/0.7.3/leaflet.css" />
    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-pink.min.css">
    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
    <style>
@@ -111,17 +111,20 @@
    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
    <!-- jQuery -->
    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+
    <!-- Leaflet + Esri Leaflet -->
-   <script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
-   <script src="//cdn.jsdelivr.net/leaflet.esri/latest/esri-leaflet.js"></script>
+   <script src="//cdn.jsdelivr.net/leaflet/0.7.3/leaflet.js"></script>
+   <script src="http://cdn.jsdelivr.net/leaflet.esri/1.0.0/esri-leaflet.js"></script>
    <!-- Leaflet Plugins -->
-   <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/1.0.0-rc.4/esri-leaflet-geocoder.js"></script>
-   <link rel="stylesheet" type="text/css" href="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-geocoder/1.0.0-rc.4/esri-leaflet-geocoder.css">
    <script src="https://rawgit.com/Leaflet/Leaflet.heat/gh-pages/dist/leaflet-heat.js"></script>
-   <script src="http://cdn-geoweb.s3.amazonaws.com/esri-leaflet-heatmap-feature-layer/1.0.0-rc.1/esri-leaflet-heatmap-feature-layer.js"></script>
+   <script src="//cdn.jsdelivr.net/leaflet.esri.heatmap-feature-layer/1.0.2/esri-leaflet-heatmap-feature-layer.js"></script>
+   <link rel="stylesheet" href="//cdn.jsdelivr.net/leaflet.esri.geocoder/1.0.1/esri-leaflet-geocoder.css">
+   <script src="//cdn.jsdelivr.net/leaflet.esri.geocoder/1.0.1/esri-leaflet-geocoder.js"></script>
+   <script src="http://spatialserver.github.io/Leaflet.MapboxVectorTile/dist/Leaflet.MapboxVectorTile.js"></script>
 
    <!-- ArcGIS API for JavaScript -->
    <script src="http://js.arcgis.com/3.13/"></script>
+
    <!-- App -->
    <script src="js/arcgis-map.js"></script>
    <script src="js/leaflet-map.js"></script>
@@ -145,9 +148,10 @@
     <div class="mdl-layout__drawer ja-txt">
       <span class="mdl-layout-title ja-txt">背景地図</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="#" id="arcgis_rt">ArcGIS Online</a>
-        <a class="mdl-navigation__link" href="#" id="mapbox_vt">MapBox</a>
-        <a class="mdl-navigation__link" href="#" id="osm">Open Street Map</a>
+        <a class="mdl-navigation__link" href="#" id="feature">フィーチャ レイヤー</a>
+        <a class="mdl-navigation__link" href="#" id="dynamic">ダイナミック レイヤー</a>
+        <a class="mdl-navigation__link" href="#" id="image">イメージ サービス レイヤー</a>
+        <a class="mdl-navigation__link" href="#" id="heatmap">ヒートマップ レイヤー</a>
       </nav>
     </div>
     <main class="mdl-layout__content">

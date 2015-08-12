@@ -14,16 +14,24 @@ require([
 
     "dojo/dom",
     "dojo/on",
+
     "config/defaults",
+
     "dojo/domReady!"
 
 ], function (Map, Search, ArcGISDynamicMapServiceLayer, FeatureLayer, HeatmapRenderer, InfoTemplate, ArcGISImageServiceLayer, SimpleRenderer, SimpleFillSymbol, SimpleLineSymbol, Color, dom, on, d) {
 
     var map = new Map("arcgis-map", {
-        basemap: "satellite",
+        basemap: "topo",
         center: [d.long, d.lat], // lon, lat
         zoom: d.zoom
     });
+
+    var dynamicLayer, featureLayer, heatmapFeatureLayer, imageLayer;
+    var _d = false;
+    var _f = false;
+    var _h = false;
+    var _i = false;
 
     var s = new Search({
         map: map
@@ -41,16 +49,58 @@ require([
         });
     });
 
+    on(dom.byId("feature"), "click", function() {
+      if(_f === true) {
+        featureLayer.hide();
+        _f = false;
+      }
+      else {
+        featureLayer.show();
+        _f = true;
+      }
+    });
+    on(dom.byId("dynamic"), "click", function() {
+      if(_d === true) {
+        dynamicLayer.hide();
+        _d = false;
+      }
+      else {
+        dynamicLayer.show();
+        _d = true;
+      }
+    });
+    on(dom.byId("image"), "click", function() {
+      if(_i === true) {
+        imageLayer.hide();
+        _i = false;
+      }
+      else {
+        imageLayer.show();
+        _i = true;
+      }
+    });
+    on(dom.byId("heatmap"), "click", function() {
+      if(_h === true) {
+        heatmapFeatureLayer.hide();
+        _h = false;
+      }
+      else {
+        heatmapFeatureLayer.show();
+        _h = true;
+      }
+    });
+
     addDynamicLayer();
     addFeatureLayer();
     addHeatmapLayer();
     addImageLayer();
 
     function addDynamicLayer() {
-        var dynamicLayer = new ArcGISDynamicMapServiceLayer(d.dynamicLayerUrl, {
-            opacity: 0.5
+        dynamicLayer = new ArcGISDynamicMapServiceLayer(d.dynamicLayerUrl, {
+            opacity: 0.8
         });
         map.addLayer(dynamicLayer);
+        dynamicLayer.hide();
     }
 
     function addFeatureLayer() {
@@ -60,7 +110,7 @@ require([
             new Color([255,255,255]), 1),new Color([0,0,0,0])
         );
         var renderer = new SimpleRenderer(symbol);
-        var featureLayer = new FeatureLayer(d.featureLayerUrl, {
+        featureLayer = new FeatureLayer(d.featureLayerUrl, {
             mode: FeatureLayer.MODE_SNAPSHOT,
             outFields: ["*"],
             infoTemplate: infoTemplate
@@ -68,24 +118,32 @@ require([
         featureLayer.setMinScale(1500000);
         featureLayer.setRenderer(renderer);
         map.addLayer(featureLayer);
+        featureLayer.hide();
     }
 
     function addHeatmapLayer() {
         var heatmapFeatureLayerOptions = {
           mode: FeatureLayer.MODE_SNAPSHOT,
-          outFields: ["*"]
+          outFields: ["*"],
+          opacity: 0.5
         };
-        var heatmapFeatureLayer = new FeatureLayer(d.heatmapLayerUrl, heatmapFeatureLayerOptions);
-        var heatmapRenderer = new HeatmapRenderer();
+        heatmapFeatureLayer = new FeatureLayer(d.heatmapLayerUrl, heatmapFeatureLayerOptions);
+        var heatmapRenderer = new HeatmapRenderer({
+            blurRadius: 12,
+            maxPixelIntensity: 12,
+            minPixelIntensity: 0
+        });
         heatmapFeatureLayer.setRenderer(heatmapRenderer);
         map.addLayer(heatmapFeatureLayer);
+        heatmapFeatureLayer.hide();
     }
 
     function addImageLayer() {
-        var imageLayer = new ArcGISImageServiceLayer(d.imageServiceLayerUrl, {
+        imageLayer = new ArcGISImageServiceLayer(d.imageServiceLayerUrl, {
             opacity: 0.7
         });
         map.addLayer(imageLayer);
+        imageLayer.hide();
     }
 
 });
