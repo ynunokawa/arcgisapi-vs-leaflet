@@ -76,12 +76,12 @@ require([
     on(dom.byId("image"), "click", function() {
       if(_i === true) {
         imageLayer.hide();
-        dom.byId("image").innerHTML = "イメージ サービス レイヤー"
+        dom.byId("image").innerHTML = "イメージ レイヤー"
         _i = false;
       }
       else {
         imageLayer.show();
-        dom.byId("image").innerHTML = "イメージ サービス レイヤー ✔"
+        dom.byId("image").innerHTML = "イメージ レイヤー ✔"
         _i = true;
       }
     });
