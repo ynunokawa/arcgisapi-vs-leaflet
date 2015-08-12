@@ -52,40 +52,48 @@ require([
     on(dom.byId("feature"), "click", function() {
       if(_f === true) {
         featureLayer.hide();
+        dom.byId("feature").innerHTML = "フィーチャ レイヤー"
         _f = false;
       }
       else {
         featureLayer.show();
+        dom.byId("feature").innerHTML = "フィーチャ レイヤー ✔"
         _f = true;
       }
     });
     on(dom.byId("dynamic"), "click", function() {
       if(_d === true) {
         dynamicLayer.hide();
+        dom.byId("dynamic").innerHTML = "ダイナミック レイヤー"
         _d = false;
       }
       else {
         dynamicLayer.show();
+        dom.byId("dynamic").innerHTML = "ダイナミック レイヤー ✔"
         _d = true;
       }
     });
     on(dom.byId("image"), "click", function() {
       if(_i === true) {
         imageLayer.hide();
+        dom.byId("image").innerHTML = "イメージ サービス レイヤー"
         _i = false;
       }
       else {
         imageLayer.show();
+        dom.byId("image").innerHTML = "イメージ サービス レイヤー ✔"
         _i = true;
       }
     });
     on(dom.byId("heatmap"), "click", function() {
       if(_h === true) {
         heatmapFeatureLayer.hide();
+        dom.byId("heatmap").innerHTML = "ヒートマップ レイヤー"
         _h = false;
       }
       else {
         heatmapFeatureLayer.show();
+        dom.byId("heatmap").innerHTML = "ヒートマップ レイヤー ✔"
         _h = true;
       }
     });
