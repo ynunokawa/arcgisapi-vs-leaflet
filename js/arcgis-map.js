@@ -112,10 +112,10 @@ require([
     }
 
     function addFeatureLayer() {
-        var infoTemplate = new InfoTemplate("市区町村", "${SIKUCHOSON}");
+        var infoTemplate = new InfoTemplate("市区町村", "${ATTR_11}");
         var symbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
             new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
-            new Color([255,255,255]), 1),new Color([0,0,0,0])
+            new Color([255,0,0]), 1),new Color([255,0,0,0.3])
         );
         var renderer = new SimpleRenderer(symbol);
         featureLayer = new FeatureLayer(d.featureLayerUrl, {

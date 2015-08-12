@@ -14,6 +14,7 @@ require([
     var _f = false;
     var _h = false;
     var _i = false;
+    var _v = false;
 
     var searchControl = L.esri.Geocoding.Controls.geosearch().addTo(map);
 
@@ -67,11 +68,17 @@ require([
       }
     });*/
 
+    $('#vt').click(function() {
+      if(_v === false) {
+        addMapboxVectorTiledLayer();
+        $('#vt').text('ベクター タイル ✔');
+      }
+    });
+
     addDynamicLayer();
     addFeatureLayer();
     addHeatmapLayer();
     addImageLayer();
-    addMapboxVectorTiledLayer();
 
     function addDynamicLayer() {
       dynamicLayer = L.esri.dynamicMapLayer({
@@ -85,9 +92,9 @@ require([
       featureLayer = L.esri.featureLayer({
         url: d.featureLayerUrl,
         minZoom: 9,
-        style: { color: 'white', fillOpacity: 0, weight: 1 }
+        style: { color: 'red', fillOpacity: 0.3, weight: 1 }
       }).addTo(map).bindPopup(function (feature) {
-        return L.Util.template('<p>市区町村<br>{SIKUCHOSON}</p>', feature.properties);
+        return L.Util.template('<p>市区町村<br>{ATTR_11}</p>', feature.properties);
       });
     }
 
