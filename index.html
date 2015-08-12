@@ -85,6 +85,18 @@
          margin: 0;
          padding: 0;
       }
+      #info-pane {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        z-index: 10;
+        padding: 1em;
+        background: white;
+        text-align: right;
+      }
+      #form {
+        display: none;
+      }
    </style>
    <script type="text/javascript">
         var package_path = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/'));
@@ -131,12 +143,11 @@
       </div>
     </header>
     <div class="mdl-layout__drawer ja-txt">
-      <span class="mdl-layout-title ja-txt">機能</span>
+      <span class="mdl-layout-title ja-txt">背景地図</span>
       <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="#">検索</a>
-        <a class="mdl-navigation__link" href="#">Link</a>
-        <a class="mdl-navigation__link" href="#">Link</a>
-        <a class="mdl-navigation__link" href="#">Link</a>
+        <a class="mdl-navigation__link" href="#" id="arcgis_rt">ArcGIS Online</a>
+        <a class="mdl-navigation__link" href="#" id="mapbox_vt">MapBox</a>
+        <a class="mdl-navigation__link" href="#" id="osm">Open Street Map</a>
       </nav>
     </div>
     <main class="mdl-layout__content">
@@ -208,12 +219,27 @@
       <section class="mdl-layout__tab-panel" id="fixed-tab-2">
         <div class="page-content">
      　    <div id="arcgis-map"></div>
-          <div id="arcgis-search"></div>
+           <div id="arcgis-search"></div>
         </div>
       </section>
       <section class="mdl-layout__tab-panel" id="fixed-tab-3">
         <div class="page-content">
           <div id="leaflet-map"></div>
+          <!--<div id='info-pane' class='leaflet-bar'>
+            <label id='greeting'>
+              Let's edit!
+            </label>
+            <form action='#' id='form'>
+              <label for='PEDDISTRIC'>
+                Pedestrian District Name<br>
+                <input id='PEDDISTRIC' type="text" value='' name='PEDDISTRIC'><br>
+              </label>
+              <label for='TRANPLANID'>
+                Transportation Plan Id<br>
+                <input id='TRANPLANID' type='text' value='' name='TRANPLANID' disabled='disabled'>
+              </label>
+            </form>
+          </div>-->
         </div>
       </section>
       <!--<button id="btn" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored mdl-shadow--4dp mdl-color--accent">
