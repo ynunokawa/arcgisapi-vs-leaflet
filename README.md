@@ -33,7 +33,7 @@ Leaflet アプリで ArcGIS リソースを利用するためのプラグイン�
 * [Material Design Lite](http://www.getmdl.io/)
 
 ## ライセンス
-Copyright 2015 Yusuke Nunokawa.
+Copyright 2015 Esri Japan Corporation.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

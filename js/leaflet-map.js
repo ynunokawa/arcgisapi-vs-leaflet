@@ -76,9 +76,9 @@ require([
     });
 
     addDynamicLayer();
-    addFeatureLayer();
     addHeatmapLayer();
     addImageLayer();
+    addFeatureLayer();
 
     function addDynamicLayer() {
       dynamicLayer = L.esri.dynamicMapLayer({
