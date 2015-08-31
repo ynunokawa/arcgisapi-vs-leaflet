@@ -18,11 +18,11 @@ Leaflet はオープンソースの地図アプリ開発用ライブラリです
 
 * [Leaflet](http://leafletjs.com/)
 
-### Esri Leaflet
+> ### Esri Leaflet
 
-Leaflet アプリで ArcGIS リソースを利用するためのプラグインです。
+> Leaflet アプリで ArcGIS リソースを利用するためのプラグインです。
 
-* [Esri Leaflet](http://esri.github.io/esri-leaflet/)
+> * [Esri Leaflet](http://esri.github.io/esri-leaflet/)
 
 ## リソース
 
